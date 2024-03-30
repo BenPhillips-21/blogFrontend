@@ -40,3 +40,26 @@
 .read-the-docs {
   color: #888;
 }
+
+.allBlogs {
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between;  */
+  margin: 0 0 2rem;
+  padding: 0 8rem;
+  border: 3px solid purple;
+}
+
+.blogCard {
+  margin: 3rem 0; /* Adjust margin for vertical spacing */
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  transition: color .15s ease, border-color .15s ease;
+  max-width: calc(30% - 2rem); /* Calculate width for one-third of the available space */
+  width: 100%;
+}
+
+
+

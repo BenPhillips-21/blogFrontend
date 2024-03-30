@@ -1,23 +1,40 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+    const [posts, setPosts] = useState([]); // State to store fetched posts
+    const navigate = useNavigate();
 
-    // when you click on a specific post it redirects you to the post component with useNavigate
+    useEffect(() => {
+        fetch('http://localhost:5000/posts', { mode: 'cors' })
+            .then(response => response.json())
+            .then(data => setPosts(data)) 
+            .catch(error => console.error('Error fetching posts:', error));
+    }, []); 
 
-    fetch('http://localhost:5000/posts', {mode: 'cors'})
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(response) {
-      console.log(response);
-    });
+    const truncateContent = (text, maxLength) => {
+      if (text.length <= maxLength) {
+        return text;
+      }
+      return text.slice(0, maxLength) + '...';
+    };
+
+    const handleTitleClick = (postId) => {
+      navigate(`/posts/${postId}`)
+    };
 
     return (
-        <>
-            <h2>Home</h2>
-        </>
-    )
-}
+    <div className="allBlogs">
+        {posts.map((post, index) => (
+          <div className="blogCard" key={index}>
+              <h2 onClick={() => handleTitleClick(post._id)}>{post.title}</h2>
+              <p>{truncateContent(post.content, 150)}</p>
+              <p>{post.user.username}</p>
+              <p>{post.date_published}</p>
+          </div>
+        ))}
+    </div>
+    );
+};
 
-export default Home
+export default Home;
