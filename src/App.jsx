@@ -11,15 +11,17 @@ import Register from './components/register';
 import Login from './components/login';
 
 function App() {
+  const [JWT, setJWT] = useState('')
+
   return (
     <>
       <Router>
         <Navbar />
           <Routes> 
-            <Route path="/users/register" element={<Register />} />
-            <Route path="/users/login" element={<Login />} />
-            <Route path="/posts" element={<Home />} />
-            <Route path="/posts/:postid" element={<Post />} />
+            <Route path="/users/register" element={<Register JWT={JWT} setJWT={setJWT}/>} />
+            <Route path="/users/login" element={<Login JWT={JWT} setJWT={setJWT}/>} />
+            <Route path="/posts" element={<Home JWT={JWT} setJWT={setJWT}/>} />
+            <Route path="/posts/:postid" element={<Post JWT={JWT} setJWT={setJWT}/>} />
           </Routes>
       </Router>
     </>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({ JWT, setJWT }) => {
     const [posts, setPosts] = useState([]); // State to store fetched posts
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log(JWT)
         fetch('http://localhost:5000/posts', { mode: 'cors' })
             .then(response => response.json())
             .then(data => setPosts(data)) 

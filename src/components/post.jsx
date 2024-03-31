@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-const Post = () => {
+const Post = ({ JWT, setJWT }) => {
 const { postid } = useParams();
 let idNumber = parseInt(postid);
 console.log(idNumber)
