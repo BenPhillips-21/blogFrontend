@@ -24,6 +24,8 @@ const Home = () => {
     };
 
     return (
+    <>
+    <h1>All Blogs</h1>
     <div className="allBlogs">
         {posts.map((post, index) => (
           <div className="blogCard" key={index}>
@@ -34,6 +36,7 @@ const Home = () => {
           </div>
         ))}
     </div>
+    </>
     );
 };
 

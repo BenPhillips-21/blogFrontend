@@ -6,15 +6,21 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './components/home';
 import Post from './components/post';
+import Navbar from './components/navbar';
+import Register from './components/register';
+import Login from './components/login';
 
 function App() {
   return (
     <>
       <Router>
-        <Routes> 
-          <Route path="/posts" element={<Home />} />
-          <Route path="/posts/:postid" element={<Post />} />
-        </Routes>
+        <Navbar />
+          <Routes> 
+            <Route path="/users/register" element={<Register />} />
+            <Route path="/users/login" element={<Login />} />
+            <Route path="/posts" element={<Home />} />
+            <Route path="/posts/:postid" element={<Post />} />
+          </Routes>
       </Router>
     </>
   );
