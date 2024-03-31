@@ -12,6 +12,7 @@ const Home = ({ JWT, setJWT }) => {
             .then(data => setPosts(data)) 
             .catch(error => console.error('Error fetching posts:', error));
     }, []); 
+    console.log(posts)
 
     const truncateContent = (text, maxLength) => {
       if (text.length <= maxLength) {

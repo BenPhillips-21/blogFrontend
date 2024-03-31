@@ -9,6 +9,7 @@ import Post from './components/post';
 import Navbar from './components/navbar';
 import Register from './components/register';
 import Login from './components/login';
+import CreatePost from './components/createPost';
 
 function App() {
   const [JWT, setJWT] = useState('')
@@ -22,6 +23,7 @@ function App() {
             <Route path="/users/login" element={<Login JWT={JWT} setJWT={setJWT}/>} />
             <Route path="/posts" element={<Home JWT={JWT} setJWT={setJWT}/>} />
             <Route path="/posts/:postid" element={<Post JWT={JWT} setJWT={setJWT}/>} />
+            <Route path="/posts/create" element={<CreatePost JWT={JWT} setJWT={setJWT}/>} />
           </Routes>
       </Router>
     </>

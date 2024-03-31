@@ -24,6 +24,8 @@ useEffect(() => {
   fetchData(); 
 }, []); 
 
+console.log(response)
+
     return (
     <>
       <div>
@@ -33,6 +35,15 @@ useEffect(() => {
             <p>{response.content}</p>
             <p>Written by {response.user.username}</p>
             <p>Published on {response.date_published}</p>
+            <button>Delete Post</button>
+            {/* ^ yet to be implemented ^ */}
+            {response.comments.map((comment, index) => (
+          <div className="commentSection" key={index}>
+              <p>{comment.content}</p>
+              <p>{comment.user.username}</p>
+              <p>{comment.date_published}</p>
+          </div>
+        ))}
           </>
         ) : (
           <h2>Loading Blog...</h2>
