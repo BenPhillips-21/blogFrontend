@@ -21,8 +21,10 @@ const CreatePost = ({ JWT, setJWT }) => {
             })
 
             if (!response.ok) {
-                throw new Error("Network response was not ok :/")
-            }
+                const errorData = await response.json();
+                console.log(errorData);
+                throw new Error("Network response was not ok :/");
+              }  
 
             console.log('Post created successfully')
             navigate(`/posts`)
