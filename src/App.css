@@ -31,12 +31,27 @@ body {
   margin-left: -13rem;
 }
 
+.commentForm form {
+  /* margin-top: 1rem; */
+  display: grid;
+  grid-template-columns: 1fr; /* Create a single column */
+  grid-gap: 10px; /* Optional: Add gap between elements */
+  justify-items: center; /* Center items horizontally */
+}
+
+.commentForm textarea {
+  width: 100%; /* Take up full width of the column */
+}
+
+.commentForm button {
+  align-self: flex-start;
+}
+
 
 .image-container img {
   display: block;
   width: 100%; 
   height: 100%;
-  /* height: auto;  */
 }
 
 .image-container h1 {
@@ -71,9 +86,9 @@ body {
 }
 
 .contentContainer {
-  margin-top: 4rem;
+  margin-top: 2.5rem;
   width: 70%;
-  border: 3px solid black;
+  border-bottom: 3px solid black;
 }
 
 .contentContainer h1 {
@@ -81,8 +96,7 @@ body {
 }
 
 .commentSection {
-  /* border-top: 2px solid black; */
-  margin-bottom: 1rem;
+  margin-bottom: 2.5rem;
 }
 
 .commentSection button {

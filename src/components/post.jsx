@@ -14,20 +14,20 @@ const navigate = useNavigate();
 
 const { postid } = useParams();
 
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await fetch(`http://localhost:5000/posts/${postid}`);
-      const result = await response.json();
-      setResponse(result);
-      setTitle(result.title)
-      setBlogContent(result.content)
-      setLoading(true);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
+const fetchData = async () => {
+  try {
+    const response = await fetch(`http://localhost:5000/posts/${postid}`);
+    const result = await response.json();
+    setResponse(result);
+    setTitle(result.title)
+    setBlogContent(result.content)
+    setLoading(true);
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+};
 
+useEffect(() => {
   fetchData(); 
 }, []); 
 
@@ -89,8 +89,8 @@ useEffect(() => {
 
   const handlePostUpdate = async (e) => {
     e.preventDefault()
-
-    const updatedPost = { title, blogContent }
+    let content = blogContent
+    const updatedPost = { title, content }
     console.log(updatedPost)
     try {
       const response = await fetch(`http://localhost:5000/posts/update/${postid}`, {
@@ -108,7 +108,7 @@ useEffect(() => {
           throw new Error("Network response was not ok :/");
         }  
 
-      console.log('Post created successfully')
+      console.log('Post updated successfully')
       navigate(`/posts`)
   } catch (err) {
       console.log(err)
@@ -130,7 +130,9 @@ useEffect(() => {
         console.log(errorData);
         throw new Error("Network response was not ok :/");
       }
-      window.location.reload()
+
+      fetchData(); 
+
     } catch (err) {
       console.log(err)
     }
@@ -156,8 +158,8 @@ useEffect(() => {
           throw new Error("Network response was not ok :/");
         }  
 
-      console.log('Comment created successfully')
-      window.location.reload()
+      fetchData(); 
+      setContent('');
   } catch (err) {
       console.log(err)
   }
@@ -181,10 +183,13 @@ useEffect(() => {
                 <p>Written by {response.user.username}</p>
                 <p>Published on {formatDate(response.date_published)}</p>
               </div>
+              <h2>Comments: </h2>
               { JWT ? 
               <div className='commentForm'>
                 <form onSubmit={handleCommentPost}>
-                  <textarea 
+                  <textarea
+                    rows="2"
+                    cols="60" 
                     type="text"
                     required
                     value={content}
@@ -192,16 +197,24 @@ useEffect(() => {
                   />
                   <button>Publish Comment</button>
                 </form>
-              </div> : ''
+              </div> 
+              : 
+                <div><h3>Register and login to post a comment</h3></div>
               }
             </div>
-            {response.comments.map((comment, index) => (
-              <div className="commentSection" key={index}>
-                <p>{comment.content}</p>
-                <p>- {comment.user.username}, {formatDate(comment.date_published)}</p>
-                {admin === true ? <button onClick={() => handleDeleteComment(comment._id)}>Delete Comment</button> : ''}
+            {response.comments.length > 0 ? (
+              <div>
+                {response.comments.map((comment, index) => (
+                  <div className="commentSection" key={index}>
+                    <p>{comment.content}</p>
+                    <p>-- {comment.user.username}, {formatDate(comment.date_published)}</p>
+                    {admin === true ? <button onClick={() => handleDeleteComment(comment._id)}>Delete Comment</button> : ''}
+                  </div>
+                ))}
               </div>
-            ))}
+            ) : (
+              <p>No comment...</p>
+            )}
             {admin === true ?
               <div className='updateButtons'>
                 <button onClick={handleDeletePost}>Delete Post</button>
