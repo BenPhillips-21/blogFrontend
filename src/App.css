@@ -21,6 +21,7 @@
 body {
   font-family: 'Rosarivo', sans-serif;
   font-weight: normal; /* Use regular weight */
+  background-color: #d9dadf;
 }
 
 .image-container {
@@ -53,13 +54,55 @@ body {
 .image-container h4 {
   font-family: 'RosarivoItalic';
   position: absolute;
-  top: 92%; /* Position the heading in the middle vertically */
+  top: 90.5%; /* Position the heading in the middle vertically */
   left: 50%; /* Position the heading in the middle horizontally */
   transform: translate(-50%, -50%); /* Center the heading */
-  color: #bdc3d8; /* Set the color of the heading */
+  color: #d6d3d6;
   text-align: center; /* Center align the text */
   font-size: 24.5px; /* Adjust font size as needed */
   /* Add additional styling as desired */
+}
+
+.postContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contentContainer {
+  margin-top: 4rem;
+  width: 70%;
+  border: 3px solid black;
+}
+
+.contentContainer h1 {
+  font-size: 2rem;
+}
+
+.commentSection {
+  /* border-top: 2px solid black; */
+  margin-bottom: 1rem;
+}
+
+.commentSection button {
+}
+
+.updateButtons {
+  display: flex;
+  justify-content: center;
+}
+
+.updateButtons button {
+  margin: 1rem;
+}
+
+.formCont textarea{
+  margin: 0.5rem;
+}
+
+.formCont label {
+  font-size: 1.25rem;
 }
 
 .logo {
@@ -102,9 +145,10 @@ body {
   display: flex;
   flex-wrap: wrap;
   /* justify-content: space-between;  */
-  margin: 0 0 2rem;
+  margin-top: 5rem;
   padding: 0 8rem;
-  border: 3px solid purple;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
 }
 
 .blogCard {
@@ -114,14 +158,18 @@ body {
   color: inherit;
   text-decoration: none;
   transition: color .15s ease, border-color .15s ease;
-  max-width: calc(30% - 2rem); /* Calculate width for one-third of the available space */
+  max-width: calc(48% - 2rem); /* Calculate width for one-third of the available space */
   width: 100%;
+}
+
+.footer {
+  margin-top: 2rem;
 }
 
 .navbar {
   display: flex;
   flex-direction: row;
-  background-color: purple;
+  background-color: #31343c;
   width: 100%;
 }
 

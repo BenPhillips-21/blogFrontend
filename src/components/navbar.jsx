@@ -24,7 +24,7 @@ const Navbar = () => {
 
 const styles = {
   navbar: {
-    backgroundColor: '#333',
+    backgroundColor: '#2c3b3d',
     padding: '10px 20px',
     marginBottom: '20px',
     width: '100%',

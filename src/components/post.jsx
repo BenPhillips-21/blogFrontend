@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { DateTime } from 'luxon';
 
 const Post = ({ JWT, setJWT }) => {
 const [response, setResponse] = useState('')
 const [loading, setLoading] = useState(false)
 const [title, setTitle] = useState('')
 const [blogContent, setBlogContent] = useState('')
-// const [commenting, setCommenting] = useState(false)
+const [update, setUpdate] = useState('closed')
+const [admin, setAdmin] = useState(false)
 const [content, setContent] = useState('')
 const navigate = useNavigate();
-console.log(JWT)
 
 const { postid } = useParams();
-let idNumber = parseInt(postid);
-console.log(idNumber, "idNumber")
 
 useEffect(() => {
   const fetchData = async () => {
@@ -31,6 +30,29 @@ useEffect(() => {
 
   fetchData(); 
 }, []); 
+
+useEffect(() => {
+  // This effect will also run when the component mounts
+  const fetchAdmin = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/users/detail`, {
+          method: 'GET',
+          headers: { 
+              'Authorization': `Bearer ${JWT}`
+          }
+      })
+
+      if (!response.ok) {
+        setAdmin(false)
+      } else {
+        setAdmin(true)
+      }    
+  } catch (err) {
+      console.log(err)
+  }
+  }
+  fetchAdmin();
+}, []);
 
   const handleDeletePost = async (e) => {
     e.preventDefault()
@@ -54,6 +76,15 @@ useEffect(() => {
   } catch (err) {
       console.log(err)
   }
+  }
+
+  const openUpdate = async (e) => {
+    e.preventDefault()
+    if (update === 'closed') {
+      setUpdate('open')
+    } else {
+      setUpdate('closed')
+    }
   }
 
   const handlePostUpdate = async (e) => {
@@ -132,62 +163,84 @@ useEffect(() => {
   }
   }
 
-    return (
+  const formatDate = (originalDate) => {
+    const jsDate = new Date(originalDate);
+    const luxonDateTime = DateTime.fromJSDate(jsDate);
+    return luxonDateTime.toLocaleString(DateTime.DATE_MED);
+  }
+
+  return (
     <>
       <div>
         {loading ? (
           <>
-            {/* <h1>{response.title}</h1>
-            <p>{response.content}</p> */}
-            <h1>{title}</h1>
-            <p>{blogContent}</p>
-            <p>Written by {response.user.username}</p>
-            <p>Published on {response.date_published}</p>
-            <button onClick={handleDeletePost}>Delete Post</button>
-            <button>Update Post</button>
-            {/* update post should setupdating to true then open the text areas.... */}
-            <form onSubmit={handlePostUpdate}>
-                <textarea 
+            <div className='postContainer'>
+              <div className='contentContainer'>
+                <h1>{title}</h1>
+                <p>{blogContent}</p>
+                <p>Written by {response.user.username}</p>
+                <p>Published on {formatDate(response.date_published)}</p>
+              </div>
+              { JWT ? 
+              <div className='commentForm'>
+                <form onSubmit={handleCommentPost}>
+                  <textarea 
+                    type="text"
+                    required
+                    value={content}
+                    onChange={(e) => setContent(e.target.value)}
+                  />
+                  <button>Publish Comment</button>
+                </form>
+              </div> : ''
+              }
+            </div>
+            {response.comments.map((comment, index) => (
+              <div className="commentSection" key={index}>
+                <p>{comment.content}</p>
+                <p>- {comment.user.username}, {formatDate(comment.date_published)}</p>
+                {admin === true ? <button onClick={() => handleDeleteComment(comment._id)}>Delete Comment</button> : ''}
+              </div>
+            ))}
+            {admin === true ?
+              <div className='updateButtons'>
+                <button onClick={handleDeletePost}>Delete Post</button>
+                <button onClick={openUpdate}>Update Post</button>
+              </div>
+              : ''}
+            {update === 'open' ? 
+              <div className='formCont'>
+                <form onSubmit={handlePostUpdate} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                  <label>Title: </label>
+                  <textarea 
                     type="text"
                     required
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
-                />
-                <textarea 
+                    rows="1" 
+                    cols="50"
+                  />
+                  <label>Blog Content: </label>
+                  <textarea 
                     type="text"
                     required
                     value={blogContent}
                     onChange={(e) => setBlogContent(e.target.value)}
-                />
-                <button>Update Blog</button>
-            </form>
-            {response.comments.map((comment, index) => (
-          <div className="commentSection" key={index}>
-              <p>{comment.content}</p>
-              <p>{comment.user.username}</p>
-              <p>{comment.date_published}</p>
-              <button onClick={() => handleDeleteComment(comment._id)}>Delete Comment</button>
-          </div>
-        ))}
-            <div className='commentForm'>
-                    <form onSubmit={handleCommentPost}>
-                        <textarea 
-                            type="text"
-                            required
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
-                        />
-                        <button>Publish Comment</button>
-                    </form>
-                </div>
+                    rows="10" 
+                    cols="70"
+                  />
+                  <button>Update Blog</button>
+                </form>
+              </div>
+              : ''}
           </>
         ) : (
           <h2>Loading Blog...</h2>
         )}
       </div>
     </>
-    )
+  
+  )  
+        }
+  export default Post
 
-}
-
-export default Post
