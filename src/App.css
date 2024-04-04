@@ -5,6 +5,63 @@
   text-align: center;
 }
 
+@font-face {
+  font-family: 'Rosarivo';
+  src: url('/fonts/Rosarivo-Regular.ttf') format('truetype');
+  /* Add additional font weights and styles if needed */
+}
+
+@font-face {
+  font-family: 'RosarivoItalic';
+  src: url('/fonts/Rosarivo-Italic.ttf') format('truetype');
+  font-weight: italic;
+  /* Add additional font weights and styles if needed */
+}
+
+body {
+  font-family: 'Rosarivo', sans-serif;
+  font-weight: normal; /* Use regular weight */
+}
+
+.image-container {
+  margin-top: -2.5rem;
+  position: relative;
+  width: 100vw; /* Set container width to 100% of viewport width */
+  margin-left: -13rem;
+}
+
+
+.image-container img {
+  display: block;
+  width: 100%; 
+  height: 100%;
+  /* height: auto;  */
+}
+
+.image-container h1 {
+  font-family: 'RosarivoItalic';
+  position: absolute;
+  top: 13%; /* Position the heading in the middle vertically */
+  left: 50%; /* Position the heading in the middle horizontally */
+  transform: translate(-50%, -50%); /* Center the heading */
+  color: #2c3b3d; /* Set the color of the heading */
+  text-align: center; /* Center align the text */
+  font-size: 50px; /* Adjust font size as needed */
+  /* Add additional styling as desired */
+}
+
+.image-container h4 {
+  font-family: 'RosarivoItalic';
+  position: absolute;
+  top: 92%; /* Position the heading in the middle vertically */
+  left: 50%; /* Position the heading in the middle horizontally */
+  transform: translate(-50%, -50%); /* Center the heading */
+  color: #bdc3d8; /* Set the color of the heading */
+  text-align: center; /* Center align the text */
+  font-size: 24.5px; /* Adjust font size as needed */
+  /* Add additional styling as desired */
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
