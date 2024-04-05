@@ -37,7 +37,7 @@ const Home = ({ JWT, setJWT }) => {
     <div class="image-container">
       <img id='wanderer' src='https://preview.redd.it/bih0lfsoihe51.jpg?auto=webp&s=4b788bb755141f78a6059cba8e4e69947cb71951'></img>
       <h1>On Exploration</h1>
-      <h4>Discovering the world through essays and writings on the spirit of exploration.</h4>
+      <h4>Discovering the world through writings on the spirit of exploration.</h4>
     </div>
     <div className="allBlogs">
         {posts.map((post, index) => (

@@ -51,7 +51,7 @@ const CreatePost = ({ JWT, setJWT }) => {
                             required
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
-                            rows="25" 
+                            rows="19" 
                             cols="47"
                         />
                         <button>Create Post</button>

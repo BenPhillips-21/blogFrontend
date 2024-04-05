@@ -1,22 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({JWT, setJWT, admin, setAdmin}) => {
   return (
     <nav style={styles.navbar}>
       <ul style={styles.navList}>
         <li style={styles.navItem}>
           <Link to="/posts" style={styles.navLink}>Home</Link>
         </li>
-        <li style={styles.navItem}>
-          <Link to="/users/register" style={styles.navLink}>Register</Link>
-        </li>
-        <li style={styles.navItem}>
-          <Link to="/users/login" style={styles.navLink}>Login</Link>
-        </li>
+                {
+          !JWT ? (
+            <>
+              <li style={styles.navItem}>
+                <Link to="/users/register" style={styles.navLink}>Register</Link>
+              </li>
+              <li style={styles.navItem}>
+                <Link to="/users/login" style={styles.navLink}>Login</Link>
+              </li>
+            </>
+          ) : (
+            <li style={styles.navItem}>
+              <Link onClick={() => { setJWT(''); setAdmin(false) }} style={styles.navLink}>Logout</Link>
+            </li>
+          )
+        }
+        { admin === true ?
         <li style={styles.navItem}>
           <Link to="/posts/create" style={styles.navLink}>Create Post</Link>
-        </li>
+        </li> : ''
+        }
       </ul>
     </nav>
   );

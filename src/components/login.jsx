@@ -6,6 +6,7 @@ const Login = ({ JWT, setJWT }) => {
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const [response, setResponse] = useState('');
+    const [error, setError] = useState('')
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -21,7 +22,8 @@ const Login = ({ JWT, setJWT }) => {
         })
         
         if (!response.ok) {
-            throw new Error("Network response was no ok :/")
+            setError("Username or password incorrect")
+            throw new Error("Username or password incorrect")
         }
         const data = await response.json()
         setResponse(data)
@@ -37,7 +39,7 @@ const Login = ({ JWT, setJWT }) => {
 
     return (
         <>
-            <h1>Login :D</h1>
+            <h1>Login</h1>
                 <div className='registerForm'>
                     <form onSubmit={handleSubmit}>
                         <label>Username:</label>
@@ -58,6 +60,7 @@ const Login = ({ JWT, setJWT }) => {
                         { loading && <button disabled>Logging In...</button>}
                     </form>
                 </div>
+                {error ? <p>{error}</p> : ''}
         </>
     )
 }

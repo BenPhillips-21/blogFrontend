@@ -30,7 +30,7 @@ const Register = ({ JWT, setJWT }) => {
       console.log("New User Registered:", response);
       setJWT(data.token)
       setLoading(false);
-      navigate(`/posts`);
+      navigate(`/users/login`);
     } catch (error) {
       console.error('Error:', error);
       setLoading(false);
@@ -39,7 +39,7 @@ const Register = ({ JWT, setJWT }) => {
 
   return (
     <>
-      <h1>Register :D</h1>
+      <h1>Register</h1>
       <div className='registerForm'>
         <form onSubmit={handleSubmit}>
           <label>Username:</label>

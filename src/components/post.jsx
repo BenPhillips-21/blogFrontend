@@ -2,13 +2,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DateTime } from 'luxon';
 
-const Post = ({ JWT, setJWT }) => {
+const Post = ({ JWT, setJWT, admin, setAdmin }) => {
 const [response, setResponse] = useState('')
 const [loading, setLoading] = useState(false)
 const [title, setTitle] = useState('')
 const [blogContent, setBlogContent] = useState('')
 const [update, setUpdate] = useState('closed')
-const [admin, setAdmin] = useState(false)
 const [content, setContent] = useState('')
 const navigate = useNavigate();
 
@@ -30,29 +29,6 @@ const fetchData = async () => {
 useEffect(() => {
   fetchData(); 
 }, []); 
-
-useEffect(() => {
-  // This effect will also run when the component mounts
-  const fetchAdmin = async () => {
-    try {
-      const response = await fetch(`http://localhost:5000/users/detail`, {
-          method: 'GET',
-          headers: { 
-              'Authorization': `Bearer ${JWT}`
-          }
-      })
-
-      if (!response.ok) {
-        setAdmin(false)
-      } else {
-        setAdmin(true)
-      }    
-  } catch (err) {
-      console.log(err)
-  }
-  }
-  fetchAdmin();
-}, []);
 
   const handleDeletePost = async (e) => {
     e.preventDefault()
