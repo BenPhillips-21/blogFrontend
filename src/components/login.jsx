@@ -8,7 +8,7 @@ const Login = ({ JWT, setJWT }) => {
     const [response, setResponse] = useState('');
     const [error, setError] = useState('')
     const navigate = useNavigate();
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
         const newUser = { username, password } 
@@ -61,6 +61,7 @@ const Login = ({ JWT, setJWT }) => {
                     </form>
                 </div>
                 {error ? <p>{error}</p> : ''}
+                <img style={{ marginLeft: '2rem', marginTop: '2rem', width: '20rem' }} src='https://svgsilh.com/svg/32253.svg'></img>    
         </>
     )
 }

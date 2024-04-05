@@ -60,6 +60,7 @@ const Register = ({ JWT, setJWT }) => {
           {loading && <button disabled>Registering...</button>}
         </form>
       </div>
+      <img style={{ marginLeft: '2rem', marginTop: '2rem', width: '20rem' }} src='https://svgsilh.com/svg/37510.svg'></img>
     </>
   );
 }

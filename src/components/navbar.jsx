@@ -1,64 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({JWT, setJWT, admin, setAdmin}) => {
+const Navbar = ({ JWT, setJWT, admin, setAdmin }) => {
   return (
-    <nav style={styles.navbar}>
-      <ul style={styles.navList}>
-        <li style={styles.navItem}>
-          <Link to="/posts" style={styles.navLink}>Home</Link>
+    <nav className="navbar">
+      <ul className="navList">
+        <li className="navItem">
+          <Link to="/posts" className="navLink">Home</Link>
         </li>
-                {
+        {
           !JWT ? (
             <>
-              <li style={styles.navItem}>
-                <Link to="/users/register" style={styles.navLink}>Register</Link>
+              <li className="navItem">
+                <Link to="/users/register" className="navLink">Register</Link>
               </li>
-              <li style={styles.navItem}>
-                <Link to="/users/login" style={styles.navLink}>Login</Link>
+              <li className="navItem">
+                <Link to="/users/login" className="navLink">Login</Link>
               </li>
             </>
           ) : (
-            <li style={styles.navItem}>
-              <Link onClick={() => { setJWT(''); setAdmin(false) }} style={styles.navLink}>Logout</Link>
-            </li>
-          )
+              <li className="navItem">
+                <Link onClick={() => { setJWT(''); setAdmin(false) }} className="navLink">Logout</Link>
+              </li>
+            )
         }
-        { admin === true ?
-        <li style={styles.navItem}>
-          <Link to="/posts/create" style={styles.navLink}>Create Post</Link>
-        </li> : ''
+        {admin === true ?
+          <li className="navItem">
+            <Link to="/posts/create" className="navLink">Create Post</Link>
+          </li> : ''
         }
       </ul>
     </nav>
   );
 }
 
-const styles = {
-  navbar: {
-    backgroundColor: '#2c3b3d',
-    padding: '10px 20px',
-    marginBottom: '20px',
-    width: '100%',
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    zIndex: 9999, // Ensures it's on top of other elements
-  },
-  navList: {
-    listStyle: 'none',
-    margin: 0,
-    padding: 0,
-    display: 'flex',
-    justifyContent: 'center', // Add space between links 
-  },
-  navItem: {
-    margin: '0 100px 0 0'
-  },
-  navLink: {
-    color: '#fff',
-    textDecoration: 'none',
-  }
-};
-
 export default Navbar;
+
