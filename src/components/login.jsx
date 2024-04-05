@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const Login = ({ JWT, setJWT }) => {
+const Login = ({ setJWT }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
@@ -27,7 +27,6 @@ const Login = ({ JWT, setJWT }) => {
         }
         const data = await response.json()
         setResponse(data)
-        console.log("New User Logged in successfully")
         setJWT(data.token)
         setLoading(false)
         navigate(`/posts`)

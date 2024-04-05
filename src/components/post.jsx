@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { DateTime } from 'luxon';
 import ButtonImage from '/like-button.png'
 
-const Post = ({ JWT, setJWT, admin, setAdmin }) => {
+const Post = ({ JWT, admin }) => {
 const [response, setResponse] = useState('')
 const [loading, setLoading] = useState(false)
 const [title, setTitle] = useState('')
@@ -44,14 +44,11 @@ useEffect(() => {
 
       if (!response.ok) {
         const errorData = await response.json(); // Parsing JSON here
-        console.log(errorData);
-        throw new Error("Network response was not ok :/");
+        throw new Error(`${errorData}`);
       }      
-
-      console.log('Post deleted successfully')
       navigate(`/posts`)
   } catch (err) {
-      console.log(err)
+    throw new Error(`${err}`);
   }
   }
 
@@ -68,7 +65,6 @@ useEffect(() => {
     e.preventDefault()
     let content = blogContent
     const updatedPost = { title, content }
-    console.log(updatedPost)
     try {
       const response = await fetch(`http://localhost:5000/posts/update/${postid}`, {
           method: 'POST',
@@ -81,14 +77,12 @@ useEffect(() => {
 
       if (!response.ok) {
           const errorData = await response.json();
-          console.log(errorData);
-          throw new Error("Network response was not ok :/");
+          throw new Error(`${errorData}`);
         }  
 
-      console.log('Post updated successfully')
       navigate(`/posts`)
   } catch (err) {
-      console.log(err)
+    throw new Error(`${err}`);
   }
   }
 
@@ -104,14 +98,13 @@ useEffect(() => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.log(errorData);
-        throw new Error("Network response was not ok :/");
+        throw new Error(`${errorData}`);
       }
 
       fetchData(); 
 
     } catch (err) {
-      console.log(err)
+      throw new Error(`${err}`);
     }
   }
 
@@ -131,19 +124,17 @@ useEffect(() => {
 
       if (!response.ok) {
           const errorData = await response.json();
-          console.log(errorData);
-          throw new Error("Network response was not ok :/");
+          throw new Error(`${errorData}`);
         }  
 
       fetchData(); 
       setContent('');
   } catch (err) {
-      console.log(err)
+    throw new Error(`${err}`);
   }
   }
 
   const addLike = async (commentid) => {
-    console.log(commentid);
     try {
         await fetch(`http://localhost:5000/posts/${postid}/comments/like/${commentid}`, {
             method: 'GET',
@@ -151,9 +142,9 @@ useEffect(() => {
                 'Authorization': `Bearer ${JWT}`
             }
         });
-        fetchData(); // Assuming fetchData is a function defined elsewhere
+        fetchData();
     } catch (err) {
-        console.log(err);
+      throw new Error(`${err}`);
     }
 }
 

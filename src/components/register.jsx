@@ -27,7 +27,6 @@ const Register = ({ JWT, setJWT }) => {
 
       const data = await response.json();
       setResponse(data);
-      console.log("New User Registered:", response);
       setJWT(data.token)
       setLoading(false);
       navigate(`/users/login`);

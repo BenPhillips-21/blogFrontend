@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const CreatePost = ({ JWT, setJWT }) => {
+const CreatePost = ({ JWT }) => {
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const navigate = useNavigate();
-    console.log(JWT)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -22,14 +21,12 @@ const CreatePost = ({ JWT, setJWT }) => {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                console.log(errorData);
-                throw new Error("Network response was not ok :/");
+                throw new Error(`${errorData}`);
               }  
 
-            console.log('Post created successfully')
             navigate(`/posts`)
         } catch (err) {
-            console.log(err)
+            throw new Error(`${err}`);
         }
     }
 
