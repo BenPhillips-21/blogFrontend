@@ -95,10 +95,6 @@ body {
   font-size: 2rem;
 }
 
-.commentSection {
-  margin-bottom: 2.5rem;
-}
-
 .commentSection button {
 }
 
@@ -158,22 +154,21 @@ body {
 .allBlogs {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between;  */
   margin-top: 5rem;
   padding: 0 8rem;
   border-top: 2px solid black;
-  border-bottom: 2px solid black;
 }
 
 .blogCard {
-  margin: 3rem 0; /* Adjust margin for vertical spacing */
+  margin: 0.5rem 0; 
   padding: 1.5rem;
   text-align: left;
   color: inherit;
   text-decoration: none;
   transition: color .15s ease, border-color .15s ease;
-  max-width: calc(48% - 2rem); /* Calculate width for one-third of the available space */
+  max-width: calc(48% - 2rem);
   width: 100%;
+  border-bottom: 2px solid black;
 }
 
 .footer {
@@ -185,6 +180,39 @@ body {
   flex-direction: row;
   background-color: #31343c;
   width: 100%;
+}
+
+.likesContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: -2rem;
+  gap: 4rem;
+}
+
+
+.leLikes {
+  display: flex;
+  flex-direction: row;
+}
+
+.commentsAndDate {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20rem;
+  margin-top: -1.5rem;
+}
+
+.leLikes img {
+  background-color: transparent;
+}
+
+.likesContainer button {
+  background-color: transparent;
+  border: transparent;
 }
 
 .registerForm {

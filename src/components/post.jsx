@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { DateTime } from 'luxon';
+import ButtonImage from '/like-button.png'
 
 const Post = ({ JWT, setJWT, admin, setAdmin }) => {
 const [response, setResponse] = useState('')
@@ -141,6 +142,21 @@ useEffect(() => {
   }
   }
 
+  const addLike = async (commentid) => {
+    console.log(commentid);
+    try {
+        await fetch(`http://localhost:5000/posts/${postid}/comments/like/${commentid}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${JWT}`
+            }
+        });
+        fetchData(); // Assuming fetchData is a function defined elsewhere
+    } catch (err) {
+        console.log(err);
+    }
+}
+
   const formatDate = (originalDate) => {
     const jsDate = new Date(originalDate);
     const luxonDateTime = DateTime.fromJSDate(jsDate);
@@ -183,11 +199,19 @@ useEffect(() => {
                 {response.comments.map((comment, index) => (
                   <div className="commentSection" key={index}>
                     <p>{comment.content}</p>
-                    <p>-- {comment.user.username}, {formatDate(comment.date_published)}</p>
+                    <div className='likesContainer'>
+                      <div className='leLikes'>
+                      <p>{comment.likeCount}</p>
+                      <button style={{ marginLeft: '-0.8rem', marginTop: '0.1rem'}} onClick={() => addLike(comment._id)}><img src={ButtonImage} style={{ width: '0.8rem' }} alt="Button Image" /></button>
+                    </div>
+                  <div className='leInfo'>
+                      <p>-- {comment.user.username}, {formatDate(comment.date_published)}</p>
+                  </div>
+                    </div>
                     {admin === true ? <button onClick={() => handleDeleteComment(comment._id)}>Delete Comment</button> : ''}
                   </div>
                 ))}
-              </div>
+                  </div>
             ) : (
               <p>No comment...</p>
             )}
@@ -222,6 +246,7 @@ useEffect(() => {
                 </form>
               </div>
               : ''}
+              <img style={{ marginTop: '2rem', width: '20rem' }} src='https://svgsilh.com/svg_v2/1296602.svg'></img>
           </>
         ) : (
           <h2>Loading Blog...</h2>
