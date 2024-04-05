@@ -246,7 +246,7 @@ useEffect(() => {
                 </form>
               </div>
               : ''}
-              <img style={{ marginTop: '2rem', width: '20rem' }} src='https://svgsilh.com/svg_v2/1296602.svg'></img>
+              <img style={{ marginTop: '2rem', width: '15rem' }} src='https://svgsilh.com/svg_v2/1296602.svg'></img>
           </>
         ) : (
           <h2>Loading Blog...</h2>

@@ -56,12 +56,12 @@ const Login = ({ JWT, setJWT }) => {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
-                        {!loading && <button>Login</button>}
+                        {!loading && <button>Submit</button>}
                         { loading && <button disabled>Logging In...</button>}
                     </form>
                 </div>
                 {error ? <p>{error}</p> : ''}
-                <img style={{ marginLeft: '2rem', marginTop: '2rem', width: '20rem' }} src='https://svgsilh.com/svg/32253.svg'></img>    
+                <img style={{ marginLeft: '1rem', marginTop: '2rem', width: '15rem' }} src='https://svgsilh.com/svg/32253.svg'></img>    
         </>
     )
 }
