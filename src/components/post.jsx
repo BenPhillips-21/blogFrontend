@@ -182,7 +182,7 @@ useEffect(() => {
                 </form>
               </div> 
               : 
-                <div><h3>Register and login to post a comment</h3></div>
+                <div><h3>Register and login to post and like comments</h3></div>
               }
             </div>
             {response.comments.length > 0 ? (
