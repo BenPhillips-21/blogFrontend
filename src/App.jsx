@@ -18,7 +18,7 @@ function App() {
   useEffect(() => {
     const fetchAdmin = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/users/detail`, {
+        const response = await fetch(`https://blogapi-production-98cb.up.railway.app/users/detail`, {
             method: 'GET',
             headers: { 
                 'Authorization': `Bearer ${JWT}`

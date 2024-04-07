@@ -15,7 +15,7 @@ const Login = ({ setJWT }) => {
         
         setLoading(true)
         try {
-        const response = await fetch('http://localhost:5000/users/login', {
+        const response = await fetch('https://blogapi-production-98cb.up.railway.app/users/login', {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newUser)

@@ -16,7 +16,7 @@ const { postid } = useParams();
 
 const fetchData = async () => {
   try {
-    const response = await fetch(`http://localhost:5000/posts/${postid}`);
+    const response = await fetch(`https://blogapi-production-98cb.up.railway.app/posts/${postid}`);
     const result = await response.json();
     setResponse(result);
     setTitle(result.title)
@@ -34,7 +34,7 @@ useEffect(() => {
   const handleDeletePost = async (e) => {
     e.preventDefault()
     try {
-      const response = await fetch(`http://localhost:5000/posts/delete/${postid}`, {
+      const response = await fetch(`https://blogapi-production-98cb.up.railway.app/posts/delete/${postid}`, {
           method: 'POST',
           headers: { 
               "Content-Type": "application/json",
@@ -66,7 +66,7 @@ useEffect(() => {
     let content = blogContent
     const updatedPost = { title, content }
     try {
-      const response = await fetch(`http://localhost:5000/posts/update/${postid}`, {
+      const response = await fetch(`https://blogapi-production-98cb.up.railway.app/posts/update/${postid}`, {
           method: 'POST',
           headers: { 
               "Content-Type": "application/json",
@@ -88,7 +88,7 @@ useEffect(() => {
 
   const handleDeleteComment = async (commentid) => {
     try {
-      const response = await fetch(`http://localhost:5000/posts/${postid}/comments/delete/${commentid}`, {
+      const response = await fetch(`https://blogapi-production-98cb.up.railway.app/posts/${postid}/comments/delete/${commentid}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -113,7 +113,7 @@ useEffect(() => {
 
     let newComment = { content }
     try {
-      const response = await fetch(`http://localhost:5000/posts/${postid}/comment/create`, {
+      const response = await fetch(`https://blogapi-production-98cb.up.railway.app/posts/${postid}/comment/create`, {
           method: 'POST',
           headers: { 
               "Content-Type": "application/json",
@@ -136,7 +136,7 @@ useEffect(() => {
 
   const addLike = async (commentid) => {
     try {
-        await fetch(`http://localhost:5000/posts/${postid}/comments/like/${commentid}`, {
+        await fetch(`https://blogapi-production-98cb.up.railway.app/posts/${postid}/comments/like/${commentid}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${JWT}`

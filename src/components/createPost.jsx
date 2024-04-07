@@ -10,7 +10,7 @@ const CreatePost = ({ JWT }) => {
         e.preventDefault()
         const newPost = { title, content }
         try {
-            const response = await fetch('http://localhost:5000/posts/create', {
+            const response = await fetch('https://blogapi-production-98cb.up.railway.app/posts/create', {
                 method: 'POST',
                 headers: { 
                     "Content-Type": "application/json",
