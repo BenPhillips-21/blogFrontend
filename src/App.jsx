@@ -10,6 +10,7 @@ import Navbar from './components/navbar';
 import Register from './components/register';
 import Login from './components/login';
 import CreatePost from './components/createPost';
+import ToHome from './components/toHome'
 
 function App() {
   const [JWT, setJWT] = useState('')
@@ -42,6 +43,7 @@ function App() {
       <Router>
         <Navbar JWT={JWT} setJWT={setJWT} admin={admin} setAdmin={setAdmin}/>
           <Routes> 
+            <Route path="/" element={<ToHome />} />
             <Route path="/users/register" element={<Register JWT={JWT} setJWT={setJWT}/>} />
             <Route path="/users/login" element={<Login JWT={JWT} setJWT={setJWT}/>} />
             <Route path="/posts" element={<Home JWT={JWT} setJWT={setJWT}/>} />
