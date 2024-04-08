@@ -7,7 +7,7 @@ This repository comprises the frontend portion of the 'On Exploration' Blog App.
 
 # Key Features
 
-1. **Persistent Authentication using JWTs:** The app integrates with the backend auth server to issue a JSON Web Token on login, which is stored in state on the client-side. Everytime the user uses a route that requires a JWT, the JWT stored in state is sent in the request headers for authentication.
+1. **Authentication And Authorization using JWTs:** The app integrates with the backend auth server to issue a JSON Web Token on login, which is stored in state on the client-side. Everytime the user uses a route that requires a JWT, the JWT stored in state is sent in the request headers for authentication. Admin users are authorized to create posts, update posts and delete comments.
 
 2. **Intuitive User Interface:** The frontend is designed to be intuitive, ensuring that users can effortlessly navigate through various sections of the blog app. The clean and well-organized layout makes it easy to discover and access different blogs and their contents.
 
