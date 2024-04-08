@@ -191,11 +191,11 @@ useEffect(() => {
                   <div className="commentSection" key={index}>
                     <p>{comment.content}</p>
                     <div className='likesContainer'>
-                      <div className='leLikes'>
+                      <div className='likes'>
                       <p>{comment.likeCount}</p>
-                      <button style={{ marginLeft: '-0.8rem', marginTop: '0.1rem'}} onClick={() => addLike(comment._id)}><img src={ButtonImage} style={{ width: '0.8rem' }} alt="Button Image" /></button>
+                      <button onClick={() => addLike(comment._id)}><img src={ButtonImage} alt="Button Image" /></button>
                     </div>
-                  <div className='leInfo'>
+                  <div className='info'>
                       <p>-- {comment.user.username}, {formatDate(comment.date_published)}</p>
                   </div>
                     </div>
